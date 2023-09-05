@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Studant;
 use App\Http\Requests\StoreStudantRequest;
 use App\Http\Requests\UpdateStudantRequest;
+use Illuminate\Http\Request;
 use DB;
 
 class StudantController extends Controller
@@ -30,8 +31,14 @@ return view('home')->with('studants', $studants);
      */
     public function destroy()
     {
-        DB::table('students')->where('id', '=', 1)->delete();
-        return view('home');
+        // $studants = DB::table('studants')->select('id', 'fname', 'lname', 'email', 'age')->get();
+        // $students = Studant::select('id', 'fname', 'lname', 'email', 'age')->get();
+        $students = DB::select("SELECT * FROM  studants ");
+       
+
+        DB::table('studants')->where('id', '=', 2)->delete();
+        // return redirect('home');
+        return redirect('home')->with('studants', $students);
 
     }
 
@@ -41,9 +48,33 @@ return view('home')->with('studants', $studants);
      * @param  \App\Http\Requests\StoreStudantRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreStudantRequest $request)
+    public function store(Request $request)
     {
-        //
+        $students = DB::select("SELECT * FROM  studants ");
+
+        //    $request->validate([
+    //         'fname' => 'required|string|max:255',
+    //         'lname' => 'required|string|max:255',
+    //         'email' => 'required|email|unique:students|max:255',
+    //         'age' => 'required|integer',
+    //     ]);
+        $post= new Studant();
+       $post->fname= $request->input('fname');
+        $post->lname= $request->input('lname');
+        $post->email= $request->input('email');
+        $post->age=$request->input('age');
+        $post->save();
+        return redirect('home')->with('studants', $students);
+        // return redirect('home1');
+     
+        
+
+
+
+
+        // Create a new student record
+
+        // Redirect back with a success message
     }
 
     /**
@@ -52,9 +83,9 @@ return view('home')->with('studants', $studants);
      * @param  \App\Models\Studant  $studant
      * @return \Illuminate\Http\Response
      */
-    public function show(Studant $studant)
+    public function add()
     {
-        //
+        return view('create');
     }
 
     /**
@@ -86,8 +117,5 @@ return view('home')->with('studants', $studants);
      * @param  \App\Models\Studant  $studant
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Studant $studant)
-    {
-        //
-    }
+   
 }

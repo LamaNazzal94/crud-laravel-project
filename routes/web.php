@@ -22,3 +22,9 @@ Route::get('/update', function () {
     return view('update');
 });
 Route::get('/delete/{id}',[StudantController::class,'destroy']);
+
+Route::get('/add',[StudantController::class,'add'])->name('students.create');
+Route::post('/students', [StudantController::class, 'store'])->name('students.store');
+Route::get('/create', function () {
+    return view('create');
+});
