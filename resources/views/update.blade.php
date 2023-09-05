@@ -10,28 +10,28 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
   <body>
-  <form method="post">
+  <form method="post" action="{{ route('update',$studant['id'])}}">
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="fname">First Name</label>
-      <input type="text" class="form-control" id="fname" placeholder="First Name" name="fname">
+      <input type="text" class="form-control" id="fname" placeholder="First Name" name="fname" value="{{$studant['fname']}}">
     </div>
     <div class="form-group col-md-6">
       <label for="lname">Last Name</label>
-      <input type="text" class="form-control" id="lname" placeholder="Last Name" name="lname">
+      <input type="text" class="form-control" id="lname" placeholder="Last Name" name="lname" value="{{$studant['lname']}}">
     </div>
   </div>
   <div class="form-group">
     <label for="email">Email</label>
-    <input type="email" class="form-control" id="email" placeholder="Email">
+    <input type="email" class="form-control" id="email" placeholder="Email" value="{{$studant['email']}}">
   </div>
   
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="age">Age</label>
-      <input type="number" class="form-control" id="age" name="age">
+      <input type="number" class="form-control" id="age" name="age" value="{{$studant['age']}}">
     </div>
-  <button type="submit" class="btn btn-primary">Sign in</button>
+  <button type="submit" class="btn btn-primary">Update</button>
 </form>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

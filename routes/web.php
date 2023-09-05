@@ -18,9 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/home', [StudantController::class,'view']);
-Route::get('/update', function () {
-    return view('update');
-});
+Route::get('/edit',[StudantController::class,'edit'])->name('edit');
+Route::get('/update/{id}', [StudantController::class, 'update'])->name('update');
 Route::get('/delete/{id}',[StudantController::class,'destroy']);
 
 Route::get('/add',[StudantController::class,'add'])->name('students.create');

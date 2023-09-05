@@ -33,7 +33,7 @@
       <td>{{$studant->lname}}</td>
       <td>{{$studant->age}}</td>
       <td>{{$studant->email}}</td>
-      <td><a href="update">update</a></td>
+      <td><a href="update/{{$studant->id}}">update</a></td>
       <td><a href="delete/{{$studant->id}}">delete</a></td>
     </tr>
     @endforeach

@@ -94,9 +94,10 @@ return view('home')->with('studants', $studants);
      * @param  \App\Models\Studant  $studant
      * @return \Illuminate\Http\Response
      */
-    public function edit(Studant $studant)
+    public function edit($id)
     {
-        //
+        $studant=Studant::select('*')->find($id);
+        return view('edit',['studant'=>$studant]);
     }
 
     /**
@@ -106,10 +107,30 @@ return view('home')->with('studants', $studants);
      * @param  \App\Models\Studant  $studant
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateStudantRequest $request, Studant $studant)
-    {
-        //
+    public function update($id, UpdateStudantRequest $request)
+{
+    // Find the student record
+    $studant = Studant::find($id);
+
+    if (!$studant) {
+        return redirect()->back()->with('error', 'Student not found.');
     }
+
+    // Validate the input data
+    $validatedData = $request->validated();
+
+    // Update the student's information
+    $studant->update([
+        'fname' => $validatedData['fname'],
+        'lname' => $validatedData['lname'],
+        'email' => $validatedData['email'],
+        'age'   => $validatedData['age'],
+    ]);
+
+    // Redirect back to the view with a success message
+    return redirect()->route('home')->with('success', 'Student information updated successfully.');
+}
+
 
     /**
      * Remove the specified resource from storage.
@@ -117,5 +138,9 @@ return view('home')->with('studants', $studants);
      * @param  \App\Models\Studant  $studant
      * @return \Illuminate\Http\Response
      */
+<<<<<<< HEAD
    
+=======
+    
+>>>>>>> e235ff7d7c8d3c6448f9e7318a4b60568fd81be9
 }
