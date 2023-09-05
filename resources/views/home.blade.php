@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
   <body>
+    <a href="create">Add</a>
       <table class="table table-striped">
   <thead>
     <tr>
@@ -20,18 +21,22 @@
       <th scope="col">Email</th>
       <th scope="col">Update</th>
       <th scope="col">Delete</th>
+
+
     </tr>
   </thead>
   <tbody>
+    @foreach ( $studants as $studant)
     <tr>
-      
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+        
+      <td> {{$studant->fname}} </td>
+      <td>{{$studant->lname}}</td>
+      <td>{{$studant->age}}</td>
+      <td>{{$studant->email}}</td>
+      <td><a href="update">update</a></td>
+      <td><a href="delete/{{$studant->id}}">delete</a></td>
     </tr>
+    @endforeach
     
   </tbody>
 </table>

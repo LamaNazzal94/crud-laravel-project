@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Studant;
 use App\Http\Requests\StoreStudantRequest;
 use App\Http\Requests\UpdateStudantRequest;
+use DB;
 
 class StudantController extends Controller
 {
@@ -13,9 +14,13 @@ class StudantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function view()
     {
-        //
+
+$studants = DB::table('studants')->select('id','fname', 'lname','email','age')->get();
+
+return view('home')->with('studants', $studants);
+
     }
 
     /**
@@ -23,9 +28,11 @@ class StudantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function destroy()
     {
-        //
+        DB::table('students')->where('id', '=', 1)->delete();
+        return view('home');
+
     }
 
     /**
